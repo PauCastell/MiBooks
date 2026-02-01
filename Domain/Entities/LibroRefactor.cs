@@ -9,6 +9,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         [Required]
+        [MaxLength(200)]
         public string Titulo { get; set; }
         public int? AnoPublicacion { get; set; }
         public int? Paginas { get; set; }
