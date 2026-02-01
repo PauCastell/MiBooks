@@ -1,3 +1,9 @@
+using Application.Interfaces;
+using Application.Services;
+using Infrastructure.Data;
+using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +11,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// Registrar el DbContext con SQL Server
+builder.Services.AddDbContext<BooksDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+// Registrar BookRepository
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+// Registrar BookService
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
