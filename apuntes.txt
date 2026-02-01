@@ -1,0 +1,22 @@
+?? Posibles mejoras / siguientes pasos (para anotar)
+
+Separar configuración de entidades en clases IEntityTypeConfiguration<T>
+
+Usar Fluent API como fuente principal y minimizar DataAnnotations
+
+Definir índices (HasIndex) para campos de búsqueda frecuente
+
+Configurar DeleteBehavior explícito en todas las relaciones
+
+Usar entidades solo necesarias, no mapear toda la BD
+
+Introducir Value Objects para conceptos de dominio (más adelante)
+
+Añadir nombres explícitos de tablas y columnas (ToTable, HasColumnName)
+
+Centralizar convenciones comunes (fechas, strings, claves)
+
+Validaciones de dominio fuera de EF (en Application/Domain)
+
+Tests básicos de mappings (opcional, nivel pro)
+
