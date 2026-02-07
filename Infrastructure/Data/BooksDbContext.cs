@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using MyBooks.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

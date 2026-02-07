@@ -3,6 +3,7 @@ using Application.Services;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MyBooks.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Domain.Entities;
+using MyBooks.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers

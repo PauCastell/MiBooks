@@ -1,7 +1,7 @@
-﻿using Application.Interfaces;
-using Domain.Entities;
+﻿using MyBooks.Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using MyBooks.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

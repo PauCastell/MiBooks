@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
-using Domain.Entities;
+using MyBooks.Domain.Entities;
+using MyBooks.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

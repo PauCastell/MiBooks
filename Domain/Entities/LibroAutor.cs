@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities
+namespace MyBooks.Domain.Entities
 {
     public class LibroAutor
     {

@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+
+
+<MudLayout>
+
+    <!--ToolBar-->
+    <MudAppBar Color="Color.Primary" Elevation="1">
+        <MudText Typo="Typo.h6">My Books</MudText>
+    </MudAppBar>
+
+    <!--Menú lateral-->
+    <MudDrawer ClipMode="DrawerClipMode.Never" Open="true" Elevation="1">
+        <MyBooks.Web.Components.Navigation.NavMenu/>
+    </MudDrawer>
+
+    <!--Contenido principal-->
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+
+</MudLayout>
+
+
+
+
+
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

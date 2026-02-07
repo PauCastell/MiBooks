@@ -2,8 +2,9 @@
   <Folder Name="/Elementos de la solución/">
     <File Path="apuntes.txt" />
   </Folder>
-  <Project Path="Api/Api.csproj" />
-  <Project Path="Application/Application.csproj" />
-  <Project Path="Domain/Domain.csproj" />
-  <Project Path="Infrastructure/Infrastructure.csproj" />
+  <Project Path="Api/MyBooks.Api.csproj" />
+  <Project Path="Application/MyBooks.Application.csproj" />
+  <Project Path="Domain/MyBooks.Domain.csproj" />
+  <Project Path="Infrastructure/MyBooks.Infrastructure.csproj" />
+  <Project Path="MyBooks.Web/MyBooks.Web.csproj" Id="23987ab4-1fb3-4b31-be71-dfb0d6942c57" />
 </Solution>

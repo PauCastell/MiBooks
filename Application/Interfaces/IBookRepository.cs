@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
+﻿using MyBooks.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Interfaces
+namespace MyBooks.Application.Interfaces
 {
     public interface IBookRepository
     {

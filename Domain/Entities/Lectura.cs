@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Xml;
 
-namespace Domain.Entities
+namespace MyBooks.Domain.Entities
 {
     public class Lectura
     {

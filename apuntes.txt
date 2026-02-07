@@ -20,3 +20,7 @@ Validaciones de dominio fuera de EF (en Application/Domain)
 
 Tests básicos de mappings (opcional, nivel pro)
 
+
+
+MEJORAS:
+Más adelante podrías leer metadatos internos del EPUB, pero eso sería un paso extra avanzado.
