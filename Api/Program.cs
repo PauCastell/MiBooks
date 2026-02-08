@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MyBooks.Application.Interfaces;
+using MyBooks.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 // Registrar BookService
 builder.Services.AddScoped<IBookService, BookService>();
+
+//Registrar FileService
+builder.Services.AddScoped<IFileService, FileService>();
 
 var app = builder.Build();
 
