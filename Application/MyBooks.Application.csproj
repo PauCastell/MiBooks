@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\MyBooks.Domain.csproj" />
+    <ProjectReference Include="..\MyBooks.Shared\MyBooks.Shared.csproj" />
   </ItemGroup>
 
 </Project>
