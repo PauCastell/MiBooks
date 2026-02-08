@@ -1,0 +1,58 @@
+﻿@page "/input"
+@inject HttpClient Http
+@using MyBooks.Shared.Dtos
+@using MyBooks.Web.ViewModels
+
+@if(editableFiles == null)
+{
+    <p>Cargando files</p>
+}
+else
+{
+    <div style="margin: 20px; border: solid 1px;" >
+        <MudDataGrid T="EditableFileBook" Items="@editableFiles" Hover="true" Bordered="true" ColumnResizeMode=ResizeMode.Column Dense="true" Class="compact-grid" EditMode="DataGridEditMode.Cell" ReadOnly = "false">
+            <Columns>
+
+                <PropertyColumn Property="x => x.FileName" Title="Archivo"/>
+
+                <PropertyColumn Property="x => x.Title" Title="Título" Editable="true">
+                    <EditTemplate>
+                        <MudTextField @bind-Value="context.Item.Title" Required Margin="Margin.Dense"/>
+                    </EditTemplate>
+                </PropertyColumn>
+
+                <PropertyColumn Property="x => x.Author" Title="Autor" Editable="true">
+                    <EditTemplate>
+                        <MudTextField @bind-bind-Value="context.Item.Author"/>
+                    </EditTemplate>
+                </PropertyColumn>
+
+            </Columns>
+        </MudDataGrid>
+    </div>
+}
+
+
+@code {
+    private List<EditableFileBook>? editableFiles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //TODO: crear constante para el endpoint
+        var files = await Http.GetFromJsonAsync<List<FileBookDto>>("api/file/input");
+        if (files != null){
+            editableFiles = MapFileBooktoEditableBook(files);
+        }    
+    }
+
+
+    private List<EditableFileBook> MapFileBooktoEditableBook(List<FileBookDto> fileBookList)
+    {
+        return fileBookList.Select(x => new EditableFileBook
+        {
+            FileName = x.FileName,
+            Title = x.Title,
+            Author = x.Author
+        }).ToList();
+    }
+}

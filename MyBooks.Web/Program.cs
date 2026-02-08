@@ -9,6 +9,16 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddMudServices();
 
+//Registrar HttpClient para consumir a API
+builder.Services.AddScoped<HttpClient>(sp =>
+{
+    return new HttpClient
+    {
+        //TODO: Obtner url de forma más profesionar.
+        BaseAddress = new Uri("https://localhost:7296/")
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
