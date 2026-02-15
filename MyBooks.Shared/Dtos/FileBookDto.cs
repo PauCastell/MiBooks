@@ -6,9 +6,9 @@ namespace MyBooks.Shared.Dtos
 {
     public class FileBookDto
     {
-        public string FileName { get; set; }
-        public string? Title { get; set; }
-        public string? Author { get; set; }
-        public string Path { get; set; }
+        public string FileName { get; set; } = string.Empty;
+        public string? Title { get; set; } = string.Empty;
+        public string? Author { get; set; } = string.Empty;
+        public string Path { get; set; } = string.Empty;
     }
 }
