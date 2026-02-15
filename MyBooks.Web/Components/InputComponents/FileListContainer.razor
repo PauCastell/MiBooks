@@ -1,0 +1,21 @@
+﻿
+<MudPaper Elevation="2"
+          Square="false"
+          Outlined="true"
+          Class="ma-4"
+          Style="@($"background: {Colors.Gray.Lighten5}; overflow: auto; max-width: 30vw; max-heigth: 80vw")">
+
+    <div Style="@($"background: {Colors.Gray.Lighten4}")" Square="true">
+                <MudText Class="pa-1" Typo="Typo.subtitle2" Align="Align.Center">File Books</MudText>
+    </div>
+  
+    <MudDivider/>
+
+    @ChildContent
+
+</MudPaper>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

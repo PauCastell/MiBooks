@@ -1,0 +1,27 @@
+﻿@using MyBooks.Web.ViewModels
+
+<MudList T="EditableFileBook"
+    Dense="true">
+
+    @if(Files == null)
+    {
+        <p>Cargando files</p>
+    }
+    else
+    {
+        @foreach (var file in Files)
+        {
+            <MudListItem Class="pl-1 pt-0 pb-0">
+                <MudText Typo="Typo.caption">@file.FileName</MudText>
+            </MudListItem>
+            <MudDivider />
+        }
+    }  
+</MudList>
+
+
+@code {
+    [Parameter]
+    public List<EditableFileBook>? Files { get; set; }   
+    private EditableFileBook? selectedFile;
+}

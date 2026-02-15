@@ -3,34 +3,15 @@
 @using MyBooks.Shared.Dtos
 @using MyBooks.Web.ViewModels
 
-@if(editableFiles == null)
-{
-    <p>Cargando files</p>
-}
-else
-{
-    <div style="margin: 20px; border: solid 1px;" >
-        <MudDataGrid T="EditableFileBook" Items="@editableFiles" Hover="true" Bordered="true" ColumnResizeMode=ResizeMode.Column Dense="true" Class="compact-grid" EditMode="DataGridEditMode.Cell" ReadOnly = "false">
-            <Columns>
+<div style="display: flex; gap:16px">
+    <MyBooks.Web.Components.InputComponents.FileListContainer>
 
-                <PropertyColumn Property="x => x.FileName" Title="Archivo"/>
+        <MyBooks.Web.Components.InputComponents.FileList Files=editableFiles />
 
-                <PropertyColumn Property="x => x.Title" Title="Título" Editable="true">
-                    <EditTemplate>
-                        <MudTextField @bind-Value="context.Item.Title" Required Margin="Margin.Dense"/>
-                    </EditTemplate>
-                </PropertyColumn>
+    </MyBooks.Web.Components.InputComponents.FileListContainer>
+    
+</div>
 
-                <PropertyColumn Property="x => x.Author" Title="Autor" Editable="true">
-                    <EditTemplate>
-                        <MudTextField @bind-bind-Value="context.Item.Author"/>
-                    </EditTemplate>
-                </PropertyColumn>
-
-            </Columns>
-        </MudDataGrid>
-    </div>
-}
 
 
 @code {
@@ -54,5 +35,17 @@ else
             Title = x.Title,
             Author = x.Author
         }).ToList();
+    }
+
+    private void OnTitleChanged(EditableFileBook item, string? value)
+    {
+        item.Title = value;
+        StateHasChanged();
+    }
+
+    private void OnAuthorChanged(EditableFileBook item, string? value)
+    {
+        item.Author = value;
+        StateHasChanged();
     }
 }
