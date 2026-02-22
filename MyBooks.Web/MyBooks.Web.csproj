@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MudBlazor" Version="8.15.0" />
+    <ProjectReference Include="..\MyBooks.Shared\MyBooks.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyBooks.Shared\MyBooks.Shared.csproj" />
+    <Folder Include="Components\Navigation\" />
   </ItemGroup>
 
 </Project>
