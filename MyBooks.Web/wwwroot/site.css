@@ -1,0 +1,58 @@
+﻿:root {
+    /*
+        TIPOGRAFÍA
+    */
+    --font-xs: 11px;
+    --font-sm: 12px;
+    --font-md: 14px;
+    --font-lg: 16px;
+    /*
+        COLORES FONDO
+    */
+    --color-bg-app: #F3F4F6;
+    --color-bg-panel: #FFFFFF;
+    --color-bg-muted: #F9FAFB;
+    /*
+        TEXTO
+    */
+    --color-text-primary: #111827;
+    --color-text-secondary: #4B5563;
+    --color-text-muted: #6B7280;
+    /*
+            BORDES
+    */
+    --color-border: #E5E7EB;
+    --color-border-strong: #D1D5DB;
+    /*
+        ACCIONES
+    */
+    --color-accent: #2563EB;
+    --color-accent-hover: #1D4ED8;
+    /*
+        ESTADOS
+    */
+    --color-success: #16A34A;
+    --color-warning: #D97706;
+    --color-danger: #DC2626;
+    /*
+        ESPACIADOS
+    */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    /*
+        INPUTS
+    */
+    --input-height: 32px;
+    --radius-sm: 4px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: var(--font-base);
+    color: var(--color-primary);
+    background-color: #f9fafb;
+}
