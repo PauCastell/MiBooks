@@ -1,10 +1,10 @@
-﻿using Application.Dtos;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using MyBooks.Domain.Entities;
 using MyBooks.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MyBooks.Application.Dtos.GoogleBooksDtos;
 
 namespace Application.Services
 {
@@ -17,10 +17,10 @@ namespace Application.Services
             _bookRepository = bookRepository;
         }
 
-        public async Task<List<BookDto>> GetAllBooksAsync()
+        public async Task<List<VolumeInfo>> GetAllBooksAsync()
         {
             var books = await _bookRepository.GetAllBooks();
-            var librosDto = books.Select(l => new BookDto
+            var librosDto = books.Select(l => new VolumeInfo
             {
                 Id = l.Id,
                 Titulo = l.Titulo
