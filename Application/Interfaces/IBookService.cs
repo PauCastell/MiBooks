@@ -1,4 +1,4 @@
-﻿using MyBooks.Application.Dtos.GoogleBooksDtos;
+﻿using Application.Dtos;
 using MyBooks.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,6 @@ namespace Application.Interfaces
 {
     public interface IBookService
     {
-        Task<List<VolumeInfo>> GetAllBooksAsync();
+        Task<List<BookDto>> GetAllBooksAsync();
     }
 }
