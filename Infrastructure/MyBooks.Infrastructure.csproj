@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\MyBooks.Application.csproj" />
     <ProjectReference Include="..\Domain\MyBooks.Domain.csproj" />
+    <ProjectReference Include="..\MyBooks.Shared\MyBooks.Shared.csproj" />
   </ItemGroup>
 
 </Project>
