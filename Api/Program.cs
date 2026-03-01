@@ -4,7 +4,9 @@ using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MyBooks.Application.Interfaces;
+using MyBooks.Infrastructure.GoogleBooks.Service;
 using MyBooks.Infrastructure.Services;
+using MyBooks.Shared.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,11 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<BooksDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+//Inyecta los valores de configuración para GoogleBooksOptions.
+builder.Services.Configure<GoogleBooksOptions>(builder.Configuration.GetSection("GoogleBooks"));
+
+builder.Services.AddHttpClient<IGoogleBooksService, GoogleBookService>();
 
 // Registrar BookRepository
 builder.Services.AddScoped<IBookRepository, BookRepository>();
