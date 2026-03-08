@@ -5,6 +5,7 @@ using MyBooks.Application.Interfaces;
 using MyBooks.Shared.Const;
 using MyBooks.Shared.Settings;
 using System.Net.Http.Json;
+using System.Reflection.Metadata;
 
 namespace MyBooks.Infrastructure.GoogleBooks.Service
 {
@@ -48,9 +49,20 @@ namespace MyBooks.Infrastructure.GoogleBooks.Service
 
         internal string CreateQuery(string title, string author)
         {
-            var query = $"{ConstValues.GoogleQueryPrefix}{ConstValues.GoogleIntitle}{Uri.EscapeDataString(title)}" +
-                $"+{ConstValues.GoogleInAuthor}{Uri.EscapeDataString(author)}" +
-                $"{ConstValues.Googlekey}{_apiKey}";
+            var queryParts = new List<string>();
+            if (!string.IsNullOrEmpty(title))
+            {
+                queryParts.Add($"{ConstValues.GoogleIntitle}{Uri.EscapeDataString(title)}");
+            }
+            if (!string.IsNullOrEmpty(author))
+            {
+                queryParts.Add($"{ConstValues.GoogleInAuthor}{Uri.EscapeDataString(author)}");
+            }
+
+            var query = $"{ConstValues.GoogleQueryPrefix}{string.Join("+", queryParts)}"
+                + $"{ConstValues.Googlekey}{_apiKey}"
+                + $"{ConstValues.GoogleMaxResults}";
+
             var url = $"{_baseUrl}{query}";
 
             return url;
