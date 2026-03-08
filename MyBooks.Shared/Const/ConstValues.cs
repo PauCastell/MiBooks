@@ -10,5 +10,6 @@ namespace MyBooks.Shared.Const
         public const string GoogleIntitle = "intitle:";
         public const string GoogleInAuthor = "inauthor:";
         public const string Googlekey = "&key=";
+        public const string GoogleMaxResults = "&maxResults=20";
     }
 }
