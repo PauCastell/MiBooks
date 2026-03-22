@@ -1,4 +1,6 @@
 ﻿@using MyBooks.Shared.Dtos
+@using MyBooks.Application.Interfaces
+@inject IGoogleBooksUseCase googleBookService
 
 
 
@@ -10,4 +12,31 @@
     [Parameter]
     public EventCallback<GoogleBookDto> OnBookSelected { get; set; }
 
+    private string searchText = string.Empty;
+    private List<GoogleBookDto> booksList = [];
+    private GoogleBookDto? selectedBook;
+
+
+    //TODO: Contolar errores.
+    //TODO: Testear funciones
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(InitialTitle) || string.IsNullOrEmpty(InitialAuthor)) return;
+
+        booksList = await googleBookService.GetBookByTitleAndAuthor(InitialTitle, InitialAuthor);
+    }
+
+    private async Task SearchBooks(string searchText)
+    {
+        if (string.IsNullOrEmpty(searchText)) return;
+
+        booksList = await googleBookService.GetBookByQuery(searchText);
+    }
+
+    private async Task SelectBook(GoogleBookDto book)
+    {
+        selectedBook = book;
+
+        await OnBookSelected.InvokeAsync(book);
+    }
 }

@@ -1,8 +1,9 @@
 ﻿@page "/input"
+@using Application.Interfaces
 @using MyBooks.Shared.Dtos
 @using MyBooks.Web.Components.InputComponents
 @using MyBooks.Web.Models
-@inject HttpClient _http
+@inject IFileService FileService
 @rendermode InteractiveServer
 
 <MyBooks.Web.Components.InputComponents.InputBookTab Books="Books" OnSelect="OnBookSelected" />
@@ -15,7 +16,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var files = await _http.GetFromJsonAsync<List<FileBookDto>>("api/file/input");
+        var files = FileService.GetFileBookFromPath("*.epub");
         Books = files.Select(d => new BookImportedVM(d)).ToList();
 
         if(Books != null && Books.Any())

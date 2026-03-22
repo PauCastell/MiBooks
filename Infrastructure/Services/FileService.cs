@@ -1,4 +1,6 @@
 ﻿using Application.Interfaces;
+using Microsoft.Extensions.Configuration;
+using MyBooks.Application.Interfaces;
 using MyBooks.Shared.Dtos;
 using System;
 using System.Collections.Generic;
@@ -9,8 +11,16 @@ namespace MyBooks.Infrastructure.Services
     //TODO: Implementar control de errores y validaciones.
     public class FileService : IFileService
     {
-        public List<FileBookDto> GetFileBookFromPath(string path, string extension)
+        private readonly IConfiguration _configuration;
+
+        public FileService(IConfiguration configuration)
         {
+            _configuration = configuration;
+        }
+
+        public List<FileBookDto> GetFileBookFromPath(string extension)
+        {
+            var path = _configuration["BookInputIntPath"] ?? string.Empty;
             var files = GetFilesFromPath(path, extension);
             var fileBookDtos = new List<FileBookDto>();
             foreach (var file in files)

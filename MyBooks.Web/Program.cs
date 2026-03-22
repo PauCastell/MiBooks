@@ -1,3 +1,13 @@
+using Application.Interfaces;
+using Application.Services;
+using Infrastructure.Data;
+using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using MyBooks.Application.Interfaces;
+using MyBooks.Application.Services;
+using MyBooks.Infrastructure.GoogleBooks.Service;
+using MyBooks.Infrastructure.Services;
+using MyBooks.Shared.Settings;
 using MyBooks.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,15 +16,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-//Registrar HttpClient para consumir a API
-builder.Services.AddScoped<HttpClient>(sp =>
-{
-    return new HttpClient
-    {
-        //TODO: Obtner url de forma más profesionar.
-        BaseAddress = new Uri("https://localhost:7296/")
-    };
-});
+// Registrar el DbContext con SQL Server
+builder.Services.AddDbContext<BooksDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+//Inyecta los valores de configuración para GoogleBooksOptions.
+//TODO: La clase GoogleBooksOptions debería tener validaciones para asegurar que los valores de configuración sean correctos?
+builder.Services.Configure<GoogleBooksOptions>(builder.Configuration.GetSection("GoogleBooks"));
+
+builder.Services.AddHttpClient<IGoogleBooksService, GoogleBookService>();
+builder.Services.AddScoped<IGoogleBooksUseCase, GoogleBooksUseCase>();
+
+// Registrar BookRepository
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+// Registrar BookService
+builder.Services.AddScoped<IBookService, BookService>();
+
+//Registrar FileService
+builder.Services.AddScoped<IFileService, FileService>();
 
 var app = builder.Build();
 
