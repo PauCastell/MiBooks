@@ -1,5 +1,5 @@
-﻿using MyBooks.Application.Dtos;
-using MyBooks.Application.Interfaces;
+﻿using MyBooks.Application.Interfaces;
+using MyBooks.Shared.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -26,6 +26,16 @@ namespace MyBooks.Application.Services
             }
 
             return await _googleBooksService.GetBookByTitleAndAuthor(title, author);
+        }
+
+        //TODO: Crear Test.
+        public async Task<List<GoogleBookDto>> GetBookByQuery(string searchText)
+        {
+            searchText = searchText.Trim();
+
+            if (string.IsNullOrEmpty(searchText)) return [];
+
+            return await _googleBooksService.GetBooksByQuery(searchText);
         }
     }
 }
