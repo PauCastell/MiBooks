@@ -1,0 +1,86 @@
+﻿@using MyBooks.Shared.Const
+@using MyBooks.Web.Models
+
+@if (isOverflowOpen)
+{
+    <div class="overlay" @onclick="() => isOverflowOpen = false"/>
+}
+
+<div class="book-tabs">
+    @foreach (var book in visibleBooks)
+    {
+        <button class="@(SelectedBook?.FileName == book.FileName ? "active" : "")"
+            @onclick="() => SelectBook(book)">
+            @(string.IsNullOrEmpty(book.Title) ? book.FileName : book.Title)
+        </button>
+    }
+
+    @if (overflowBooks.Any())
+    {
+        <div class="overflow-container">
+            <button class="overflow-btn" @onclick="() => ToogleOverflow()">...</button>
+            @if (isOverflowOpen)
+            {
+                <div class="overflow-menu">
+                    @foreach(var book in overflowBooks)
+                    {
+                        <div class="overflow-item" @onclick="() => SelectBook(book)">
+                            @(string.IsNullOrEmpty(book.Title) ? book.FileName : book.Title)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        
+    }
+    <div class="tab-baseline"/>
+</div>
+
+
+@code {
+    //TODO: Añadir tamaño máximo de la pestaña, nunca usar dos filas, ... si supera el máximo del ancho.
+    //TODO: La lista overflow mostrarla al pasar por encima, y ocultarla al salir.
+    //TODO: Al terminar de editar el libro cerrar la pestaña.
+    //TODO: Al seleccionar un libro de la lista ponerlo en las pestañas.
+    //TODO: Añadir un separador entre la lista de libros overflow
+    //TODO: Posibilidad de pasar la lista de overflow a otro componente.
+    [Parameter]
+    public List<BookImportedVM> Books { get; set; } = [];
+    [Parameter]
+    public BookImportedVM? SelectedBook { get; set; }
+    [Parameter]
+    public EventCallback<BookImportedVM> OnSelect { get; set; }
+
+    private List<BookImportedVM> visibleBooks => Books.Take(ConstValues.MaxVisibleBooks).ToList();
+    private List<BookImportedVM> overflowBooks => Books.Skip(ConstValues.MaxVisibleBooks).ToList();
+
+    private bool isOverflowOpen = false;
+
+    protected override void OnParametersSet()
+    {
+        if(SelectedBook == null && Books.Any())
+        {
+            SelectedBook = Books.First();
+        }
+    }
+
+    private string GetSelectedBookClass(BookImportedVM book)
+    {
+        return book.FileName == SelectedBook?.FileName
+        ? "bg-white border-b-white font-semibold shadow-sm"
+        : "bg-gray-100 hover:bg-gray-200";
+    }
+
+
+    private async Task SelectBook(BookImportedVM book)
+    {
+        SelectedBook = book;
+        isOverflowOpen = false;
+        await OnSelect.InvokeAsync(book);
+    }
+
+    private void ToogleOverflow()
+    {
+        isOverflowOpen = !isOverflowOpen;
+    }
+}

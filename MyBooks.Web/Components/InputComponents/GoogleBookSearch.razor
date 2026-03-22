@@ -1,0 +1,13 @@
+﻿@using MyBooks.Shared.Dtos
+
+
+
+@code {
+    [Parameter]
+    public string InitialTitle { get; set; } = string.Empty;
+    [Parameter]
+    public string InitialAuthor { get; set; } = string.Empty;
+    [Parameter]
+    public EventCallback<GoogleBookDto> OnBookSelected { get; set; }
+
+}

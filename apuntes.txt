@@ -23,4 +23,8 @@ Tests básicos de mappings (opcional, nivel pro)
 
 
 MEJORAS:
-Más adelante podrías leer metadatos internos del EPUB, pero eso sería un paso extra avanzado.
+-Más adelante podrías leer metadatos internos del EPUB, pero eso sería un paso extra avanzado.
+
+-Configurar Tailwind de forma automática.
+
+-Instalar Tailwind correctamente, actualmente está como script en app.js, pero lo ideal sería integrarlo en el proceso de build (con PostCSS o similar).

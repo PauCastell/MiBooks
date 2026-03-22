@@ -1,0 +1,36 @@
+﻿@page "/input"
+@using MyBooks.Shared.Dtos
+@using MyBooks.Web.Components.InputComponents
+@using MyBooks.Web.Models
+@inject HttpClient _http
+@rendermode InteractiveServer
+
+<MyBooks.Web.Components.InputComponents.InputBookTab Books="Books" OnSelect="OnBookSelected" />
+
+<BookInputEditForm EditBook="SelectedBook" OnSave="HandleBookSaved"/>
+
+@code {
+    private List<BookImportedVM> Books = new();
+    private BookImportedVM? SelectedBook;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var files = await _http.GetFromJsonAsync<List<FileBookDto>>("api/file/input");
+        Books = files.Select(d => new BookImportedVM(d)).ToList();
+
+        if(Books != null && Books.Any())
+        {
+            SelectedBook = Books[0];
+        }
+    }
+
+    private void OnBookSelected(BookImportedVM book)
+    {
+        SelectedBook = book;
+    }
+
+    private void HandleBookSaved(BookImportedVM book)
+    {
+        Console.WriteLine($"Se ha guardado: {book.Title}");
+    }
+}

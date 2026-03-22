@@ -1,0 +1,42 @@
+Estoy desarrollando una aplicación web con Blazor Server orientada a gestión personal de libros.
+El objetivo no es crear una web comercial atractiva, sino una aplicación con apariencia de software empresarial compacto, sobrio y profesional.
+
+El frontend debe:
+
+Priorizar funcionalidad y claridad sobre diseño decorativo.
+
+Transmitir sensación de herramienta interna o aplicación de escritorio.
+
+Ser visualmente consistente, compacto y ordenado.
+
+Evitar excesivo espacio en blanco o estilos modernos demasiado “SaaS”.
+
+Mantener una jerarquía visual clara y profesional.
+
+Decisiones generales:
+
+Diseño en modo claro.
+
+Estética sobria y minimalista.
+
+Componentes propios construidos con TailwindCSS.
+
+Enfoque en reutilización, coherencia y estructura limpia.
+
+Espaciados y tamaños consistentes.
+
+Tipografía legible y profesional.
+
+Interfaz pensada para productividad, no para marketing.
+
+El sistema debe ser:
+
+Escalable a nuevas secciones.
+
+Estructuralmente limpio.
+
+Fácil de mantener.
+
+Sin dependencias visuales pesadas.
+
+No se busca una UI llamativa, sino una interfaz sólida, estructurada y coherente.

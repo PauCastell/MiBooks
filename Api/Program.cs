@@ -22,6 +22,7 @@ builder.Services.AddDbContext<BooksDbContext>(options =>
 );
 
 //Inyecta los valores de configuración para GoogleBooksOptions.
+//TODO: La clase GoogleBooksOptions debería tener validaciones para asegurar que los valores de configuración sean correctos?
 builder.Services.Configure<GoogleBooksOptions>(builder.Configuration.GetSection("GoogleBooks"));
 
 builder.Services.AddHttpClient<IGoogleBooksService, GoogleBookService>();

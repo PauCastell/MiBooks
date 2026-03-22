@@ -3,6 +3,7 @@ using MyBooks.Application.Dtos;
 using MyBooks.Application.Dtos.GoogleBooksDtos;
 using MyBooks.Application.Interfaces;
 using MyBooks.Shared.Const;
+using MyBooks.Shared.Dtos;
 using MyBooks.Shared.Settings;
 using System.Net.Http.Json;
 using System.Reflection.Metadata;

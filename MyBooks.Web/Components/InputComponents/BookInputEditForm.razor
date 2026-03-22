@@ -1,0 +1,56 @@
+﻿@using MyBooks.Web.Models
+
+@if(EditBook != null)
+{
+    <div class="book-edit-form">
+        <div class="form-header">
+            <span class="form-filename">@EditBook.FileName</span>
+        </div>
+
+        <div class="form-field">
+            <labet>Título</labet>
+            <input type="text" @bind="EditBook.Title" placeholder="Título"/>
+        </div>
+
+        <div class="form-field">
+            <labet>Autor</labet>
+            <input type="text" @bind="EditBook.Author" placeholder="Autor"/>
+        </div>
+
+        <div class="form-field">
+            <labet>Título Google Books</labet>
+            <input type="text" @bind="EditBook.ExternalApiTitle" placeholder="Google Books título" />
+        </div>
+
+        <div class="form-field">
+            <labet>Fecha publicación</labet>
+            <input type="text" @bind="EditBook.PublishYear" placeholder="Ej: 2016"/>
+        </div>
+
+        <div class="form-field">
+            <labet>Páginas</labet>
+            <input type="text" @bind="EditBook.PageNumber" placeholder="Ej: 235" />
+        </div>
+
+        <div class="form-actions">
+            <button class="btn-primary" @onclick="HandleSave" disabled="@(!EditBook.isValid)">Guardar</button>
+        </div>
+    </div>
+}
+
+
+@code {
+    //TODO: si el libro es nulo mostrar mensaje
+    //TODO: Las pestañas y el formulario no se ven bien, me gustaría que la pestaña formara parte visualmente del formulario.
+    //TODO: Al guardar pensar como cerrar la pestaña, si dejarla abierta y poder cerrar manualmente o cerrar directamente al guardar.
+    [Parameter]
+    public BookImportedVM? EditBook { get; set; }
+    [Parameter]
+    public EventCallback<BookImportedVM> OnSave { get; set; }
+
+    private async Task HandleSave()
+    {
+        await OnSave.InvokeAsync(EditBook);
+    }
+
+}

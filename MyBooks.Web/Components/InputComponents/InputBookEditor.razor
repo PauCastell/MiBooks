@@ -1,0 +1,45 @@
+﻿@using MyBooks.Web.Models
+
+@if(SelectBook == null)
+{
+    <div class="p-4 text-sm text-gray-500">
+        Selecciona un libro para editar.
+    </div>
+}
+else
+{
+    <div class="p-3 border rounded bg-gray-50 mb-4">
+        <div class="text-sm font-semibold truncate" title="@SelectBook.FileName">
+            @SelectBook.FileName
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 border p-4 rounded">
+
+        <div>
+            <label class="block text-xs font-semibold mb-1" style="font-size: var(--font-sm)">Título</label>
+            <input class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-1 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Título del libro" style="font-size: var(--font-sm)" @bind="SelectBook.Title" />
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold mb-1" style="font-size: var(--font-sm)">Autor</label>
+            <input class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-1 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Autor del libro" style="font-size: var(--font-sm)" @bind="SelectBook.Author" />
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold mb-1" style="font-size: var(--font-sm)">Año de publicación</label>
+            <input class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-1 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Año de publicación" type="number" style="font-size: var(--font-sm)" @bind="SelectBook.PublishYear" />
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold mb-1" style="font-size: var(--font-sm)">Páginas</label>
+            <input class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-1 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Número de páginas" type="number" style="font-size: var(--font-sm)" @bind="SelectBook.PageNumber" />
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public BookImportedVM? SelectBook { get; set; }
+}

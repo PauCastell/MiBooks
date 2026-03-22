@@ -1,4 +1,5 @@
-﻿using MyBooks.Application.Dtos;
+﻿
+using MyBooks.Shared.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;

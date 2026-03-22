@@ -2,9 +2,12 @@
   <Folder Name="/Elementos de la solución/">
     <File Path="apuntes.txt" />
   </Folder>
+  <Project Path="Api.Tests/Api.Tests.csproj" Id="94988c79-0868-441f-925d-2f15156a7f03" />
   <Project Path="Api/MyBooks.Api.csproj" />
+  <Project Path="Application.Test/Application.Test.csproj" Id="302d924f-e876-4245-87fb-cc24996d8849" />
   <Project Path="Application/MyBooks.Application.csproj" />
   <Project Path="Domain/MyBooks.Domain.csproj" />
+  <Project Path="Infrastructure.Tests/Infrastructure.Tests.csproj" Id="7029d0f4-0263-4ae4-b576-c80808115056" />
   <Project Path="Infrastructure/MyBooks.Infrastructure.csproj" />
   <Project Path="MyBooks.Shared/MyBooks.Shared.csproj" Id="a2f2218c-d2ed-400d-9464-a0dd81d6feb1" />
   <Project Path="MyBooks.Web/MyBooks.Web.csproj" Id="23987ab4-1fb3-4b31-be71-dfb0d6942c57" />
