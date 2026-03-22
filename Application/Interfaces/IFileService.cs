@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Interfaces
+namespace MyBooks.Application.Interfaces;
+
+public interface IFileService
 {
-    public interface IFileService
-    {
-        List<FileBookDto> GetFileBookFromPath(string path, string extension);
-        Task<string> RenameFileBookAsync(string path, string bookTitle, string authorName);
-        Task MoveFileBook(string originPath, string destinationPath);
-    }
+    List<FileBookDto> GetFileBookFromPath(string extension);
+    Task<string> RenameFileBookAsync(string path, string bookTitle, string authorName);
+    Task MoveFileBook(string originPath, string destinationPath);
 }

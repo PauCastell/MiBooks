@@ -1,12 +1,13 @@
-﻿using MyBooks.Application.Dtos;
+﻿using MyBooks.Shared.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBooks.Application.Interfaces
+namespace MyBooks.Application.Interfaces;
+
+public interface IGoogleBooksUseCase
 {
-    public interface IGoogleBooksUseCase
-    {
-        Task<List<GoogleBookDto>> GetBookByTitleAndAuthor(string title, string author);
-    }
+    Task<List<GoogleBookDto>> GetBookByTitleAndAuthor(string title, string author);
+    Task<List<GoogleBookDto>> GetBookByQuery(string searchText);
+   
 }
