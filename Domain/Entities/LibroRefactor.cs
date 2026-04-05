@@ -13,7 +13,8 @@ namespace MyBooks.Domain.Entities
         public string Titulo { get; set; }
         public int? AnoPublicacion { get; set; }
         public int? Paginas { get; set; }
-       
+        public string? Descripcion { get; set; }
+
 
         // Relaciones
         public ICollection<LibroAutor> LibroAutores { get; set; } = new List<LibroAutor>();
