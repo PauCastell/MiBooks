@@ -1,0 +1,44 @@
+﻿@using Models
+
+@if(!string.IsNullOrEmpty(Message) && _isVisible)
+{
+    <div class="toast @GetClassByType()">
+        @Message
+    </div>
+}
+
+@code {
+    [Parameter]
+    public NotificationType Type { get; set; }
+    [Parameter]
+    public string Message { get; set; } = string.Empty;
+    [Parameter]
+    public int Duration { get; set; } = 3000;
+
+    private bool _isVisible = true;
+
+    //TODO: Mostrar el toast con transición no de golpe.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (string.IsNullOrEmpty(Message)) return;
+
+            await Task.Delay(Duration);
+            _isVisible = false;
+            StateHasChanged();
+        }
+    }
+
+
+    private string GetClassByType()
+    {
+        return Type switch
+        {
+            NotificationType.Success => "toast-success",
+            NotificationType.Error => "toast-error",
+            NotificationType.Warning => "toast-warning",
+            _ => "toast-default"
+        };
+    }
+}
