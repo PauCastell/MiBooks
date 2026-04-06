@@ -1,13 +1,15 @@
 ﻿using Application.Dtos;
+using MyBooks.Application.Dtos;
+using MyBooks.Domain.Common;
 using MyBooks.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Interfaces
+namespace MyBooks.Application.Interfaces;
+
+public interface IBookService
 {
-    public interface IBookService
-    {
-        Task<List<BookDto>> GetAllBooksAsync();
-    }
+    Task<Result<List<BookDto>>> GetAllBooksAsync();
+    Task<Result<BookCreatedDto>> AddBookAsync(CreateBookDto book);
 }
