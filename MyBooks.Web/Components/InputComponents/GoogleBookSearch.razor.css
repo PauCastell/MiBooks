@@ -1,0 +1,44 @@
+﻿.search-field {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-sm);
+    margin-top: 8px;
+}
+
+th{
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-text-2);
+    border-bottom: 1px solid var(--color-border);
+    padding: 4px 8px;
+}
+
+td{
+    padding: 4px 8px;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+}
+
+tbody tr:hover{
+    background-color: var(--color-hover-bg);
+    cursor: pointer;
+}
+
+.row-selected,
+.row-selected:hover{
+    background-color: var(--color-accent-dim);
+    color: var(--color-accent); 
+}
+
+.col-title{
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

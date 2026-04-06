@@ -1,4 +1,3 @@
-using Application.Interfaces;
 using Application.Services;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
@@ -18,7 +17,7 @@ builder.Services.AddRazorComponents()
 
 // Registrar el DbContext con SQL Server
 builder.Services.AddDbContext<BooksDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TestConnection"))
 );
 
 //Inyecta los valores de configuración para GoogleBooksOptions.

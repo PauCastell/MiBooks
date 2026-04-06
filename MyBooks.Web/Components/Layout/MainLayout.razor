@@ -65,7 +65,14 @@
             </div>
         </header>
         <main class="page-content">
-            @Body
+            <ErrorBoundary>
+                <ChildContent>
+                    @Body
+                </ChildContent>
+                <ErrorContent>
+                    <p>Se ha producido un error inesperado. Por favor recarga la página.</p>
+                </ErrorContent>
+            </ErrorBoundary>
         </main>
     </div>
 </div>
@@ -76,6 +83,7 @@
      * TODO: Agragar colores al tema, agregar botón para ocultar sidebar.
      * Añadir tema al layout.
      */
+    //TODO: Agregar componente para mostrar mensajes de error. En ErrorContent del Boundary.
 }
 
 

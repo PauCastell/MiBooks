@@ -41,10 +41,15 @@ namespace Infrastructure.Data
             modelBuilder.Entity<LibroRefactor>(entity =>
             {
                 entity.HasKey(libro => libro.Id); //PK LibroRefactor
+                entity.Property(libro => libro.Id)
+                .ValueGeneratedOnAdd(); //Generar valor automáticamente al agregar un nuevo libro
 
                 entity.Property(libro => libro.Titulo)
                 .IsRequired()
                 .HasMaxLength(200);
+
+                entity.HasIndex(libro => libro.Titulo)
+                .IsUnique(); //Índice único en el título para evitar duplicados
             }
             );
         }
