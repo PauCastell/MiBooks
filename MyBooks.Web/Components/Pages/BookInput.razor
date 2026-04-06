@@ -1,25 +1,18 @@
 ﻿@page "/input"
 @using Application.Interfaces
-@using MyBooks.Application.Dtos
 @using MyBooks.Shared.Dtos
 @using MyBooks.Web.Components.InputComponents
 @using MyBooks.Web.Models
 @inject IFileService FileService
 @rendermode InteractiveServer
-@inject IBookService BookService
 
 <MyBooks.Web.Components.InputComponents.InputBookTab Books="Books" OnSelect="OnBookSelected" />
 
 <BookInputEditForm EditBook="SelectedBook" OnSave="HandleBookSaved"/>
 
-<MyBooks.Web.Components.Notifications.Toast Message="@_toastMessage" Type="@_toastType" @Key="_toastKey"/>
-
 @code {
     private List<BookImportedVM> Books = new();
     private BookImportedVM? SelectedBook;
-    private string _toastMessage = string.Empty;
-    private NotificationType _toastType = NotificationType.Default;
-    private Guid _toastKey = Guid.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -37,34 +30,8 @@
         SelectedBook = book;
     }
 
-    private async Task HandleBookSaved(BookImportedVM book)
+    private void HandleBookSaved(BookImportedVM book)
     {
-        var createBookDto = new CreateBookDto
-        {
-            FileName = book.FileName,
-            Title = book.Title,
-            Authors = book.Author,
-            PublishYear = book.PublishYear,
-            PageNumber = book.PageNumber,
-            Description = book.Description,
-            SmallImage = book.SmallImage,
-            BigImage = book.BigImage,
-            ExternalApiTitle = book.ExternalApiTitle,
-        };
-
-        //TODOD: Refactorizar función.
-        var result =  await BookService.AddBookAsync(createBookDto);
-
-        if (result.IsSuccess)
-        {
-            _toastMessage = result.Message;
-            _toastType = NotificationType.Success;
-        }
-        else
-        {
-            _toastMessage = result.Message;
-            _toastType = NotificationType.Error;
-        }
-        _toastKey = Guid.NewGuid();
+        Console.WriteLine($"Se ha guardado: {book.Title}");
     }
 }

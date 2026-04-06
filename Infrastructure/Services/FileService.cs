@@ -1,6 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Application.Interfaces;
+using Microsoft.Extensions.Configuration;
 using MyBooks.Application.Interfaces;
 using MyBooks.Shared.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MyBooks.Infrastructure.Services
 {

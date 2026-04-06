@@ -2,41 +2,6 @@
 @using MyBooks.Application.Interfaces
 @inject IGoogleBooksUseCase googleBookService
 
-<div class="search-books-container">
-    <div class="search-field">
-        <input type="text" @bind="searchText" placeholder="Search title or author."/>
-        <button  class="btn-primary" @onclick="SearchBooks">Search</button>
-    </div>
-        @if(!string.IsNullOrEmpty(errorMessage))
-        {
-            <p>@errorMessage</p>
-        }
-        @if(booksList.Count > 0)
-        {
-            <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Publicación</th>
-                    <th>Páginas</th>
-                </tr>
-            </thead>
-                <tbody>
-                    @foreach (var book in booksList)
-                    {
-                        <tr @onclick="() => SelectBook(book)" class="@(book == selectedBook ? "row-selected" :"")">
-                            <td class="col-title">@book.Title</td>
-                            <td>@string.Join(", ", book.Authors)</td>
-                            <td>@book.PublishedYear</td>
-                            <td>@book.PageCount</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>      
-        }
-</div>
-
 
 
 @code {
@@ -50,52 +15,22 @@
     private string searchText = string.Empty;
     private List<GoogleBookDto> booksList = [];
     private GoogleBookDto? selectedBook;
-    private string errorMessage = string.Empty;
 
 
     //TODO: Contolar errores.
     //TODO: Testear funciones
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnInitializedAsync()
     {
-        if (!string.IsNullOrEmpty(InitialTitle) || !string.IsNullOrEmpty(InitialAuthor))
-        {
-            searchText = $"{InitialTitle} {InitialAuthor}".Trim();
-            var result = await googleBookService.GetBookByTitleAndAuthor(InitialTitle, InitialAuthor);
-            if (result.IsSuccess)
-            {
-                booksList = result.Data ?? [];
-                errorMessage = string.Empty;
-            }
-            else
-            {
-                errorMessage = result.Message;
-            }
-        }
-        else
-        {
-            booksList = [];
-            searchText = string.Empty;
-        }    
+        if (string.IsNullOrEmpty(InitialTitle) || string.IsNullOrEmpty(InitialAuthor)) return;
+
+        booksList = await googleBookService.GetBookByTitleAndAuthor(InitialTitle, InitialAuthor);
     }
 
-    private async Task SearchBooks()
+    private async Task SearchBooks(string searchText)
     {
-        if (string.IsNullOrEmpty(searchText))
-        {
-            errorMessage = string.Empty;
-            return;
-        }
-       
-        var result = await googleBookService.GetBookByQuery(searchText);
-        if(result.IsSuccess)
-        {
-            booksList = result.Data ?? [];
-            errorMessage = string.Empty;
-        }
-        else
-        {
-            errorMessage = result.Message;
-        }
+        if (string.IsNullOrEmpty(searchText)) return;
+
+        booksList = await googleBookService.GetBookByQuery(searchText);
     }
 
     private async Task SelectBook(GoogleBookDto book)

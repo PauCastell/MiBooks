@@ -1,63 +1,41 @@
-﻿using Microsoft.Extensions.Logging;
-using MyBooks.Application.Interfaces;
-using MyBooks.Domain.Common;
+﻿using MyBooks.Application.Interfaces;
 using MyBooks.Shared.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace MyBooks.Application.Services
 {
     public class GoogleBooksUseCase : IGoogleBooksUseCase
     {
         private readonly IGoogleBooksService _googleBooksService;
-        private readonly ILogger<GoogleBooksUseCase> _logger;
-        public GoogleBooksUseCase(IGoogleBooksService googleBookService, ILogger<GoogleBooksUseCase> logger)
+        public GoogleBooksUseCase(IGoogleBooksService googleBookService)
         { 
             _googleBooksService = googleBookService;
-            _logger = logger;
         }
 
-        public async Task<Result<List<GoogleBookDto>>> GetBookByTitleAndAuthor(string title, string author)
+        public async Task<List<GoogleBookDto>> GetBookByTitleAndAuthor(string title, string author)
         {
-            try
+            title = title.Trim();
+            author = author.Trim();
+
+            if(string.IsNullOrEmpty(title) && string.IsNullOrEmpty(author))
             {
-                title = title.Trim();
-                author = author.Trim();
-
-                if (string.IsNullOrEmpty(title) && string.IsNullOrEmpty(author))
-                {
-                    return Result<List<GoogleBookDto>>.Success([]);
-                }
-
-                var bookList =  await _googleBooksService.GetBookByTitleAndAuthor(title, author);
-                return Result<List<GoogleBookDto>>.Success(bookList);
+                return [];
             }
-            catch (Exception ex) 
-            {
-                _logger.LogError(ex, "Error al buscar libros en la API de Google con título: {Title} y autor: {Author}", title, author);
-                return Result<List<GoogleBookDto>>.Failure("Se ha producido un error al buscar los datos en la API de Google");
-            } 
+
+            return await _googleBooksService.GetBookByTitleAndAuthor(title, author);
         }
 
         //TODO: Crear Test.
-        //TODO: Estructurar logs para que todos tengan el mismo formato.
-        public async Task<Result<List<GoogleBookDto>>> GetBookByQuery(string searchText)
+        public async Task<List<GoogleBookDto>> GetBookByQuery(string searchText)
         {
-            try
-            {
-                searchText = searchText.Trim();
+            searchText = searchText.Trim();
 
-                if (string.IsNullOrEmpty(searchText)) return Result<List<GoogleBookDto>>.Success([]);
+            if (string.IsNullOrEmpty(searchText)) return [];
 
-                var bookList = await _googleBooksService.GetBooksByQuery(searchText);
-
-                return Result<List<GoogleBookDto>>.Success(bookList);
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al buscar libros en la API de Google con query: {SearchText}", searchText);
-                return Result<List<GoogleBookDto>>.Failure("Se ha producido un error al buscar los datos en la API de Google");
-            }
-
+            return await _googleBooksService.GetBooksByQuery(searchText);
         }
     }
 }
